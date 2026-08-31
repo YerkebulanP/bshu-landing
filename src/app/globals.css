@@ -2,23 +2,27 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #12296b;
+  --foreground: #1f1f1f;
 
-  --color-navy-900: #0f2a6b;
-  --color-navy-800: #12296b;
-  --color-navy-700: #1a3a8f;
-  --color-navy-600: #2848a3;
+  /* brand green — buttons, icons, borders, dark surfaces */
+  --color-navy-900: #14532d;
+  --color-navy-800: #14532d;
+  --color-navy-700: #1c5739;
+  --color-navy-600: #5db28f;
 
-  --color-yellow-500: #f5b921;
-  --color-yellow-600: #f0b429;
+  --color-yellow-500: #14532d;
+  --color-yellow-600: #0f3d22;
 
-  --color-blue-50: #eaf2fb;
-  --color-yellow-50: #fdf3da;
-  --color-green-50: #e7f6ec;
+  --color-blue-50: #d0f2e3;
+  --color-yellow-50: #f5f6f4;
+  --color-green-50: #c9eedb;
   --color-accent-rose: #d6336c;
 
-  --color-ink: #1c2540;
-  --color-ink-soft: #4a5578;
+  --color-line: #e5e7eb;
+
+  /* text */
+  --color-ink: #1f1f1f;
+  --color-ink-soft: #5b636f;
 }
 
 @theme inline {
@@ -38,11 +42,14 @@
   --color-green-50: var(--color-green-50);
   --color-accent-rose: var(--color-accent-rose);
 
+  --color-line: var(--color-line);
+
   --color-ink: var(--color-ink);
   --color-ink-soft: var(--color-ink-soft);
 
-  --font-heading: var(--font-unbounded);
-  --font-body: var(--font-manrope);
+  --font-heading: var(--font-roboto);
+  --font-body: var(--font-roboto);
+  --font-nav: var(--font-manrope);
   --font-script: var(--font-marck);
 }
 
@@ -63,7 +70,11 @@ h4 {
   font-family: var(--font-script), cursive;
 }
 
+.font-nav {
+  font-family: var(--font-nav), var(--font-body), sans-serif;
+}
+
 .bg-dot-pattern {
-  background-image: radial-gradient(circle, rgba(245, 185, 33, 0.55) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(circle, rgba(20, 83, 45, 0.35) 1.5px, transparent 1.5px);
   background-size: 18px 18px;
 }

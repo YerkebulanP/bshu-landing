@@ -42,7 +42,7 @@ export function LeadForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl bg-green-50 p-6 text-center font-medium text-navy-900">
+      <div className="rounded-2xl bg-green-50 p-6 text-center font-medium text-ink">
         {t("success")}
       </div>
     );
@@ -84,7 +84,7 @@ export function LeadForm() {
       </div>
 
       <div>
-        <label htmlFor="comment" className="text-sm font-semibold text-navy-900">
+        <label htmlFor="comment" className="text-sm font-semibold text-ink">
           {t("comment")}
         </label>
         <textarea
@@ -92,7 +92,7 @@ export function LeadForm() {
           name="comment"
           rows={3}
           placeholder={t("commentPlaceholder")}
-          className="mt-1.5 w-full resize-none rounded-xl border border-navy-900/15 px-4 py-2.5 text-sm text-ink outline-none focus:border-navy-700"
+          className="mt-1.5 w-full resize-none rounded-xl border border-line px-4 py-2.5 text-sm text-ink outline-none focus:border-navy-700"
         />
       </div>
 
@@ -103,7 +103,7 @@ export function LeadForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex w-full items-center justify-center rounded-full bg-yellow-500 px-6 py-3.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-yellow-600 disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center rounded-full bg-navy-800 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-navy-700 disabled:opacity-60 sm:w-auto"
       >
         {status === "submitting" ? t("submitting") : t("submit")}
       </button>
@@ -126,7 +126,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="text-sm font-semibold text-navy-900">
+      <label htmlFor={id} className="text-sm font-semibold text-ink">
         {label}
       </label>
       <input
@@ -134,7 +134,7 @@ function Field({
         name={name}
         placeholder={placeholder}
         required={required}
-        className="mt-1.5 w-full rounded-xl border border-navy-900/15 px-4 py-2.5 text-sm text-ink outline-none focus:border-navy-700"
+        className="mt-1.5 w-full rounded-xl border border-line px-4 py-2.5 text-sm text-ink outline-none focus:border-navy-700"
       />
     </div>
   );

@@ -38,7 +38,7 @@ export function SectionHeading({
       <h2
         className={clsx(
           "text-3xl font-bold sm:text-4xl",
-          light ? "text-white" : "text-navy-900",
+          light ? "text-white" : "text-ink",
         )}
       >
         {title}
@@ -47,7 +47,7 @@ export function SectionHeading({
         <p
           className={clsx(
             "mt-4 text-lg",
-            light ? "text-white/80" : "text-ink-soft",
+            light ? "text-white/80" : "text-ink",
           )}
         >
           {subtitle}

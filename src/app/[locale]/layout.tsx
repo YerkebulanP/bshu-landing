@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Marck_Script, Unbounded } from "next/font/google";
+import { Manrope, Marck_Script, Roboto } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -8,10 +8,10 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin", "cyrillic"],
-  weight: ["600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const manrope = Manrope({
@@ -57,7 +57,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${unbounded.variable} ${manrope.variable} ${marckScript.variable} h-full antialiased`}
+      className={`${roboto.variable} ${manrope.variable} ${marckScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <NextIntlClientProvider>

@@ -11,9 +11,9 @@ type Plan = {
 };
 
 const HEADER_STYLES: Record<string, string> = {
-  Basic: "bg-blue-50 text-navy-900",
-  Pro: "bg-navy-900 text-white",
-  Enterprise: "bg-yellow-500 text-navy-900",
+  Basic: "bg-blue-50 text-ink",
+  Pro: "bg-navy-800 text-white",
+  Enterprise: "bg-navy-600 text-white",
 };
 
 export async function Pricing() {
@@ -25,42 +25,44 @@ export async function Pricing() {
       <Container>
         <SectionHeading title={t("h2")} subtitle={t("note")} align="center" />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-3 lg:items-start">
+        <div className="mt-14 grid gap-5 lg:grid-cols-3 lg:items-start">
           {plans.map((plan, i) => {
             const isPro = plan.name === "Pro";
             return (
               <FadeIn key={plan.name} delay={i * 0.08} className="h-full">
                 <div
                   className={clsx(
-                    "flex h-full flex-col rounded-3xl border border-navy-900/10 shadow-sm",
-                    isPro && "lg:-translate-y-4 lg:shadow-xl",
+                    "flex h-full flex-col overflow-hidden rounded-[14px] border border-line",
+                    isPro
+                      ? "shadow-[0_8px_10px_rgba(0,0,0,0.1),0_2px_10px_rgba(0,0,0,0.05)]"
+                      : "shadow-[0_2px_10px_rgba(0,0,0,0.05)]",
                   )}
                 >
                   <div
                     className={clsx(
-                      "relative rounded-t-3xl px-7 py-8",
+                      "flex items-center justify-between gap-3 px-[18px] py-4",
                       HEADER_STYLES[plan.name],
                     )}
                   >
+                    <h3 className="text-xl font-extrabold">{plan.name}</h3>
                     {isPro && (
-                      <span className="absolute top-4 right-4 rounded-full bg-yellow-500 px-3 py-1 text-xs font-bold text-navy-900">
+                      <span className="inline-flex items-center rounded-full border border-navy-700 bg-green-50 px-4 py-1.5 text-[13px] font-medium text-navy-700">
                         {t("recommended")}
                       </span>
                     )}
-                    <h3 className="text-2xl font-extrabold">{plan.name}</h3>
                   </div>
 
-                  <div className="flex flex-1 flex-col gap-6 px-7 py-8">
+                  <div className="flex flex-1 flex-col gap-4 px-[18px] py-8">
                     {plan.groups.map((group) => (
                       <div key={group.title}>
-                        <p className="text-xs font-bold tracking-wide text-ink-soft uppercase">
+                        <p className="text-sm font-semibold tracking-wide text-ink uppercase">
                           {group.title}
                         </p>
-                        <ul className="mt-3 space-y-2.5">
+                        <ul className="mt-2.5 space-y-2.5">
                           {group.items.map((item) => (
                             <li key={item} className="flex items-start gap-2.5 text-sm">
-                              <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-navy-700" />
-                              <span className="text-ink">{item}</span>
+                              <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-navy-800" />
+                              <span className="text-ink-soft">{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -69,12 +71,7 @@ export async function Pricing() {
 
                     <a
                       href="#contacts"
-                      className={clsx(
-                        "mt-auto inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-colors",
-                        isPro
-                          ? "bg-yellow-500 text-navy-900 hover:bg-yellow-600"
-                          : "border-2 border-navy-800 text-navy-800 hover:bg-navy-800 hover:text-white",
-                      )}
+                      className="mt-auto inline-flex items-center justify-center rounded-full border border-navy-800 bg-yellow-50 px-9 py-3 text-base text-navy-800 transition-colors hover:bg-navy-800 hover:text-white"
                     >
                       {t("cta")}
                     </a>

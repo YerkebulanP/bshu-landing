@@ -10,28 +10,26 @@ export async function Problem2() {
   const items = t.raw("items") as string[];
 
   return (
-    <section className="bg-blue-50/60 py-20 sm:py-28">
-      <Container className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-        <div>
-          <SectionHeading title={t("h2")} subtitle={t("subtitle")} />
+    <section className="bg-yellow-50 py-20 sm:py-28">
+      <Container>
+        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div>
+            <SectionHeading title={t("h2")} subtitle={t("subtitle")} />
 
-          <ul className="mt-10 space-y-5">
-            {items.map((item, i) => (
-              <FadeIn key={item} delay={i * 0.06}>
-                <li className="flex items-start gap-4">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow-500 text-navy-900">
-                    <MinusCircleIcon className="h-5 w-5" />
-                  </span>
-                  <span className="text-ink">{item}</span>
-                </li>
-              </FadeIn>
-            ))}
-          </ul>
-        </div>
+            <ul className="mt-10 space-y-3.5">
+              {items.map((item, i) => (
+                <FadeIn key={item} delay={i * 0.06}>
+                  <li className="flex items-center gap-4">
+                    <MinusCircleIcon className="mt-0.5 h-[30px] w-[30px] shrink-0 text-navy-800" />
+                    <span className="text-ink">{item}</span>
+                  </li>
+                </FadeIn>
+              ))}
+            </ul>
+          </div>
 
-        <div className="space-y-6">
-          <FadeIn delay={0.1}>
-            <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl shadow-sm">
+          <FadeIn delay={0.15}>
+            <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_-1px_rgba(0,0,0,0.1)]">
               <Image
                 src="/images/problem-classroom.jpg"
                 alt={t("subtitle")}
@@ -41,15 +39,15 @@ export async function Problem2() {
               />
             </div>
           </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="rounded-3xl bg-green-50 p-8 shadow-sm">
-              <p className="text-lg leading-relaxed font-semibold text-accent-rose">
-                {t("highlight")}
-              </p>
-            </div>
-          </FadeIn>
         </div>
+
+        <FadeIn delay={0.25} className="mt-9">
+          <div className="rounded-2xl border border-line bg-white px-8 py-6 text-center shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
+            <p className="text-xl leading-relaxed font-bold text-ink">
+              {t("highlight")}
+            </p>
+          </div>
+        </FadeIn>
       </Container>
     </section>
   );

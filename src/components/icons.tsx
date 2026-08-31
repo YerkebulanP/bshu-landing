@@ -108,11 +108,48 @@ export function BadgeCheckIcon(props: IconProps) {
   );
 }
 
+export function BookOpenIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 6.5c-1.6-1.3-3.8-1.8-6.5-1.8v13c2.7 0 4.9.5 6.5 1.8" />
+      <path d="M12 6.5c1.6-1.3 3.8-1.8 6.5-1.8v13c-2.7 0-4.9.5-6.5 1.8V6.5Z" />
+    </svg>
+  );
+}
+
+export function StarIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m12 3.5 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.8l6-.8L12 3.5Z" />
+    </svg>
+  );
+}
+
+export function CoinsIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <ellipse cx="9" cy="7.5" rx="5.5" ry="3" />
+      <path d="M3.5 7.5V13c0 1.66 2.46 3 5.5 3s5.5-1.34 5.5-3V7.5" />
+      <path d="M3.5 10.25c0 1.66 2.46 3 5.5 3" />
+      <path d="M14.5 10c2.9.2 5 1.4 5 2.9 0 1.5-2.1 2.7-5 2.9" />
+      <path d="M14.5 15.9c2.9.2 5 1.4 5 2.9 0 1.66-2.46 3-5.5 3s-5.5-1.34-5.5-3" />
+    </svg>
+  );
+}
+
 export function ArrowRightIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
       <path d="M4 12h16" />
       <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m6 9 6 6 6-6" />
     </svg>
   );
 }

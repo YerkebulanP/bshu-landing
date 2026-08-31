@@ -9,44 +9,35 @@ export async function Hero() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white pt-16 pb-24 sm:pt-24 sm:pb-32"
+      className="relative isolate overflow-hidden bg-white pt-16 pb-24 sm:pt-24 sm:pb-32"
     >
-      <div
-        className="bg-dot-pattern pointer-events-none absolute top-8 left-4 h-40 w-40 opacity-70 sm:top-12 sm:left-10"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -bottom-16 -left-20 h-72 w-72 rounded-full bg-yellow-500/25"
-        aria-hidden
-      />
+      {/* декоративные размытые пятна — «аврора» */}
+      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+        <div className="absolute top-[-20%] right-[-30%] h-[410px] w-[715px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute top-[15%] right-[-25%] h-[220px] w-[420px] rotate-[85deg] rounded-full bg-navy-600 blur-[80px]" />
+        <div className="absolute top-[-25%] left-[-30%] h-[410px] w-[715px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute top-[-8%] left-[-15%] h-[165px] w-[245px] rounded-full bg-navy-700 blur-[80px]" />
+      </div>
 
       <Container className="relative grid items-center gap-14 lg:grid-cols-2">
         <FadeIn>
-          <h1 className="text-4xl leading-tight font-extrabold text-navy-900 sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl leading-[1.05] font-extrabold text-ink sm:text-5xl lg:text-[60px]">
             {t("h1")}
           </h1>
-          <p className="mt-6 text-xl font-medium text-navy-700 sm:text-2xl">
-            {t("lead")}
-          </p>
+          <p className="mt-6 text-xl text-ink sm:text-2xl">{t("lead")}</p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="#contacts"
-              className="inline-flex items-center justify-center rounded-full bg-yellow-500 px-7 py-3.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-yellow-600"
+              href="#platform"
+              className="inline-flex items-center justify-center rounded-full bg-navy-800 px-9 py-3 text-lg font-semibold text-white transition-colors hover:bg-navy-700"
             >
               {t("ctaPrimary")}
-            </a>
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center justify-center rounded-full border-2 border-navy-800 px-7 py-3.5 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-800 hover:text-white"
-            >
-              {t("ctaSecondary")}
             </a>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.15} className="relative">
-          <div className="relative aspect-4/3 w-full overflow-hidden rounded-[2rem] shadow-xl">
+          <div className="relative aspect-4/3 w-full overflow-hidden rounded-[2rem] shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)]">
             <Image
               src="/images/hero-students.jpg"
               alt={t("lead")}
@@ -57,8 +48,8 @@ export async function Hero() {
             />
           </div>
 
-          <div className="absolute -bottom-8 left-1/2 w-[85%] -translate-x-1/2 rounded-2xl bg-navy-900 px-6 py-5 text-white shadow-xl sm:w-[75%]">
-            <p className="font-script text-lg text-yellow-500 sm:text-xl">
+          <div className="absolute -bottom-8 left-1/2 w-[85%] -translate-x-1/2 rounded-2xl bg-navy-800 px-6 py-5 text-white shadow-xl sm:w-[75%]">
+            <p className="font-script text-lg text-white sm:text-xl">
               {t("note")}
             </p>
           </div>
