@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/ui/FadeIn";
 import {
   BadgeCheckIcon,
-  ChevronRightIcon,
   DocumentIcon,
   LightbulbIcon,
   TrophyIcon,
@@ -14,6 +13,35 @@ import {
 type Step = { title: string; text: string };
 
 const ICONS = [LightbulbIcon, DocumentIcon, BadgeCheckIcon, UsersIcon, TrophyIcon];
+
+function DashedArrowConnector() {
+  return (
+    <svg
+      viewBox="0 0 40 12"
+      className="h-3 w-10 text-navy-800"
+      fill="none"
+      aria-hidden
+    >
+      <line
+        x1="1"
+        y1="6"
+        x2="30"
+        y2="6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeDasharray="4 4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M27 1.5 34.5 6 27 10.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export async function HowItWorks() {
   const t = await getTranslations("howItWorks");
@@ -48,12 +76,8 @@ export async function HowItWorks() {
                 </div>
 
                 {!isLast && (
-                  <div
-                    className="absolute top-11 -right-[27px] z-10 hidden items-center text-navy-800 sm:flex"
-                    aria-hidden
-                  >
-                    <span className="h-px w-3.5 border-t-2 border-dashed border-current" />
-                    <ChevronRightIcon className="h-3.5 w-3.5" />
+                  <div className="absolute top-9 -right-[34px] z-10 hidden sm:block">
+                    <DashedArrowConnector />
                   </div>
                 )}
               </FadeIn>
