@@ -7,7 +7,7 @@ export async function CtaSection() {
   const t = await getTranslations("cta");
 
   return (
-    <section id="contacts" className="bg-blue-50/60 py-20 sm:py-28">
+    <section id="contacts" className="bg-white py-20 sm:py-28">
       <Container className="grid gap-14 lg:grid-cols-2 lg:items-start">
         <FadeIn>
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">
@@ -19,7 +19,7 @@ export async function CtaSection() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="rounded-3xl bg-white p-7 shadow-sm sm:p-9">
+          <div className="rounded-3xl border border-line bg-white p-7 shadow-[0_2px_10px_rgba(0,0,0,0.05)] sm:p-9">
             <h3 className="mb-6 text-lg font-bold text-ink">
               {t("formTitle")}
             </h3>

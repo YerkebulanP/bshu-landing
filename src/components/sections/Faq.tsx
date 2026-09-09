@@ -15,7 +15,7 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-blue-50/40 py-20 sm:py-28">
+    <section className="bg-yellow-50 py-20 sm:py-28">
       <Container className="max-w-3xl">
         <FadeIn>
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">

@@ -16,7 +16,7 @@ export async function Platform() {
   const hasVideo = Boolean(videoId) && videoId !== "videoId";
 
   return (
-    <section id="platform" className="bg-white py-20 sm:py-28">
+    <section id="platform" className="bg-yellow-50 py-20 sm:py-28">
       <Container>
         <FadeIn className="text-center">
           <h2 className="text-3xl font-bold tracking-[0.05em] text-ink uppercase sm:text-4xl">
@@ -50,6 +50,15 @@ export async function Platform() {
           <p className="font-script text-3xl text-navy-800 sm:text-4xl">
             «{t("slogan")}»
           </p>
+        </FadeIn>
+
+        <FadeIn delay={0.25} className="mt-8 flex justify-center">
+          <a
+            href="#contacts"
+            className="inline-flex items-center justify-center rounded-full bg-navy-800 px-9 py-3.5 text-lg font-bold text-white transition-colors hover:bg-navy-700"
+          >
+            {t("cta")}
+          </a>
         </FadeIn>
       </Container>
     </section>

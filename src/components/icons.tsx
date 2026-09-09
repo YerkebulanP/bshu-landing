@@ -154,6 +154,33 @@ export function ChevronDownIcon(props: IconProps) {
   );
 }
 
+export function ChevronLeftIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m15 6-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  );
+}
+
+export function DocumentIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M7 3.5h7l3 3v14a.5.5 0 0 1-.5.5h-9.5a.5.5 0 0 1-.5-.5v-16.5a.5.5 0 0 1 .5-.5Z" />
+      <path d="M14 3.5V7h3.5" />
+      <path d="M9 12.5h6" />
+      <path d="M9 16h6" />
+    </svg>
+  );
+}
+
 export function CheckIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
