@@ -1,5 +1,6 @@
 "use client";
 
+import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -41,6 +42,22 @@ export function HeroGallery({ images }: { images: GalleryImage[] }) {
           />
         </motion.div>
       </AnimatePresence>
+
+      <div className="absolute inset-x-0 bottom-5 flex justify-center gap-2">
+        {images.map((image, i) => (
+          <button
+            key={image.src}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={image.alt}
+            aria-current={i === index}
+            className={clsx(
+              "h-2 rounded-full transition-all",
+              i === index ? "w-6 bg-white" : "w-2 bg-white/60 hover:bg-white/80",
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }

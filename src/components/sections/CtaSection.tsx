@@ -8,7 +8,7 @@ export async function CtaSection() {
 
   return (
     <section id="contacts" className="bg-white py-20 sm:py-28">
-      <Container className="grid gap-14 lg:grid-cols-2 lg:items-start">
+      <Container className="grid gap-14 lg:grid-cols-2 lg:items-center">
         <FadeIn>
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">
             {t("h2")}

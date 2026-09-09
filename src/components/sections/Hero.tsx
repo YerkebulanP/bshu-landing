@@ -22,12 +22,13 @@ export async function Hero() {
       id="about"
       className="relative isolate overflow-hidden bg-white pt-16 pb-24 sm:pt-24 sm:pb-32"
     >
-      {/* декоративные размытые пятна — «аврора» */}
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <div className="absolute top-[-20%] right-[-30%] h-[410px] w-[715px] rounded-full bg-blue-50 blur-[80px]" />
-        <div className="absolute top-[15%] right-[-25%] h-[220px] w-[420px] rotate-[85deg] rounded-full bg-navy-600 blur-[80px]" />
-        <div className="absolute top-[-25%] left-[-30%] h-[410px] w-[715px] rounded-full bg-blue-50 blur-[80px]" />
-        <div className="absolute top-[-8%] left-[-15%] h-[165px] w-[245px] rounded-full bg-navy-700 blur-[80px]" />
+      {/* декоративные размытые пятна — «аврора» (позиции 1:1 из Figma, привязаны к верхней кромке секции) */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
+        <div className="absolute top-[207px] left-[31.4%] h-[590px] w-[1028px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute top-[96px] left-[89.9%] h-[316px] w-[609px] rotate-[85deg] rounded-full bg-navy-600 blur-[80px]" />
+        <div className="absolute top-[-186px] left-[-31.7%] h-[590px] w-[1028px] rounded-full bg-blue-50 blur-[80px]" />
+        <div className="absolute top-[-71px] left-[-16.9%] h-[239px] w-[352px] rounded-full bg-[#216C53] blur-[80px]" />
+        <div className="absolute top-[500px] right-0 left-0 h-[161px] bg-[#FBFDFC]" />
       </div>
 
       <Container className="relative grid items-center gap-14 lg:grid-cols-2">

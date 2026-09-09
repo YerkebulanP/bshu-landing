@@ -7,7 +7,7 @@ import { Platform } from "@/components/sections/Platform";
 import { Advantages } from "@/components/sections/Advantages";
 // import { Pricing } from "@/components/sections/Pricing"; // тарифы временно скрыты
 import { Projects } from "@/components/sections/Projects";
-import { Reviews } from "@/components/sections/Reviews";
+// import { Reviews } from "@/components/sections/Reviews"; // отзывы временно скрыты
 import { Faq } from "@/components/sections/Faq";
 import { CtaSection } from "@/components/sections/CtaSection";
 
@@ -28,7 +28,7 @@ export default async function HomePage({
       {/* <Pricing /> тарифы временно скрыты */}
       <Projects />
       <Faq />
-      <Reviews />
+      {/* <Reviews /> отзывы временно скрыты */}
       <CtaSection />
     </>
   );
