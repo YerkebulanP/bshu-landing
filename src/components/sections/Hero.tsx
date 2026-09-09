@@ -28,7 +28,6 @@ export async function Hero() {
         <div className="absolute top-[96px] left-[89.9%] h-[316px] w-[609px] rotate-[85deg] rounded-full bg-navy-600 blur-[80px]" />
         <div className="absolute top-[-186px] left-[-31.7%] h-[590px] w-[1028px] rounded-full bg-blue-50 blur-[80px]" />
         <div className="absolute top-[-71px] left-[-16.9%] h-[239px] w-[352px] rounded-full bg-[#216C53] blur-[80px]" />
-        <div className="absolute top-[500px] right-0 left-0 h-[161px] bg-[#FBFDFC]" />
       </div>
 
       <Container className="relative grid items-center gap-14 lg:grid-cols-2">
