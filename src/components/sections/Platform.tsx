@@ -55,7 +55,7 @@ export async function Platform() {
         <FadeIn delay={0.25} className="mt-8 flex justify-center">
           <a
             href="#contacts"
-            className="inline-flex items-center justify-center rounded-full bg-navy-800 px-9 py-3.5 text-lg font-bold text-white transition-colors hover:bg-navy-700"
+            className="inline-flex h-[50px] w-[270px] items-center justify-center rounded-full bg-navy-800 text-lg font-bold text-white transition-colors hover:bg-navy-700"
           >
             {t("cta")}
           </a>

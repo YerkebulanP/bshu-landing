@@ -27,8 +27,8 @@ export default async function HomePage({
       <Advantages />
       {/* <Pricing /> тарифы временно скрыты */}
       <Projects />
-      <Reviews />
       <Faq />
+      <Reviews />
       <CtaSection />
     </>
   );

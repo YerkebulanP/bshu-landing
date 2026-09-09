@@ -1,10 +1,21 @@
+import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { BrowserMockup } from "@/components/ui/BrowserMockup";
+import { HeroGallery, type GalleryImage } from "./HeroGallery";
 
 export async function Hero() {
   const t = await getTranslations("hero");
+  const bold = (chunks: ReactNode) => (
+    <strong className="font-bold">{chunks}</strong>
+  );
+
+  const images: GalleryImage[] = [
+    { src: "/images/школьники.png", alt: t("gallery.school") },
+    { src: "/images/студенты.png", alt: t("gallery.students") },
+    { src: "/images/завод.png", alt: t("gallery.factory") },
+    { src: "/images/офис.png", alt: t("gallery.office") },
+  ];
 
   return (
     <section
@@ -24,8 +35,12 @@ export async function Hero() {
           <h1 className="text-4xl leading-[1.05] font-extrabold text-ink sm:text-5xl lg:text-[60px]">
             {t("h1")}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed font-bold text-ink">
-            {t("lead")}
+
+          <p className="mt-6 text-lg leading-relaxed text-ink">
+            {t.rich("lead1", { b: bold })}
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-ink">
+            {t.rich("lead2", { b: bold })}
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
@@ -39,7 +54,7 @@ export async function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.15}>
-          <BrowserMockup className="shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)]" />
+          <HeroGallery images={images} />
         </FadeIn>
       </Container>
     </section>

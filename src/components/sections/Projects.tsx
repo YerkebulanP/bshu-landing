@@ -23,7 +23,7 @@ export async function Projects() {
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">{t("h2")}</h2>
           <a
             href="#projects"
-            className="inline-flex items-center gap-1.5 font-semibold text-navy-800 underline underline-offset-4 hover:text-navy-700"
+            className="inline-flex items-center gap-1.5 font-bold text-navy-800 underline underline-offset-4 hover:text-navy-700"
           >
             {t("linkText")}
             <ArrowRightIcon className="h-4 w-4" />

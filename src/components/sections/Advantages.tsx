@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -9,6 +10,9 @@ const ICONS = [LightbulbIcon, ShieldCheckIcon, UsersIcon];
 export async function Advantages() {
   const t = await getTranslations("advantages");
   const items = t.raw("items") as { title: string; text: string }[];
+  const bold = (chunks: ReactNode) => (
+    <strong className="font-bold">{chunks}</strong>
+  );
 
   return (
     <section className="bg-white py-20 sm:py-28">
@@ -25,7 +29,9 @@ export async function Advantages() {
                     <Icon className="h-5 w-5" />
                   </span>
                   <h3 className="mt-3 text-xl font-bold text-ink">{item.title}</h3>
-                  <p className="mt-2 text-ink-soft">{item.text}</p>
+                  <p className="mt-2 text-ink-soft">
+                    {t.rich(`items.${i}.text`, { b: bold })}
+                  </p>
                 </div>
               </FadeIn>
             );
