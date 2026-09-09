@@ -14,8 +14,8 @@ export async function About() {
   return (
     <section className="bg-yellow-50 py-20 sm:py-28">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <FadeIn className="relative aspect-[3/2] w-full">
+        <div className="grid gap-14 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+          <FadeIn className="relative aspect-[3/2] w-full scale-[1.15]">
             <Image
               src="/images/Union.png"
               alt=""
