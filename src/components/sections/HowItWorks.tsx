@@ -35,11 +35,13 @@ export async function HowItWorks() {
             const isLast = i === steps.length - 1;
             return (
               <FadeIn key={step.title} delay={i * 0.08} className="relative">
-                <div className="flex h-full flex-col gap-2 rounded-[14px] border border-line bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-800 text-white">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="text-base font-bold text-ink">{step.title}</h3>
+                <div className="flex h-full flex-col gap-3 rounded-[14px] border border-line bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-800 text-white">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="text-base font-bold text-ink">{step.title}</h3>
+                  </div>
                   <p className="text-sm text-ink-soft">
                     {t.rich(`steps.${i}.text`, { b: bold })}
                   </p>
