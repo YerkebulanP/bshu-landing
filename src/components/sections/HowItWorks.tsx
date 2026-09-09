@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Fragment } from "react";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -16,24 +17,19 @@ const ICONS = [LightbulbIcon, DocumentIcon, BadgeCheckIcon, UsersIcon, TrophyIco
 
 function DashedArrowConnector() {
   return (
-    <svg
-      viewBox="0 0 40 12"
-      className="h-3 w-10 text-navy-800"
-      fill="none"
-      aria-hidden
-    >
+    <svg viewBox="0 0 24 10" className="h-2.5 w-6 text-navy-800" fill="none" aria-hidden>
       <line
-        x1="1"
-        y1="6"
-        x2="30"
-        y2="6"
+        x1="0"
+        y1="5"
+        x2="16"
+        y2="5"
         stroke="currentColor"
         strokeWidth="2"
-        strokeDasharray="4 4"
+        strokeDasharray="3.5 3.5"
         strokeLinecap="round"
       />
       <path
-        d="M27 1.5 34.5 6 27 10.5"
+        d="M14.5 1 21 5l-6.5 4"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
@@ -57,33 +53,38 @@ export async function HowItWorks() {
           <h2 className="text-3xl font-bold text-ink sm:text-4xl">{t("h2")}</h2>
         </FadeIn>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-5 sm:gap-5">
+        {/* Flex-ряд: карточки и стрелки — соседние элементы одного потока,
+            поэтому стрелка физически не может наехать на карточку — она
+            просто занимает своё небольшое место между ними. */}
+        <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-stretch sm:gap-0">
           {steps.map((step, i) => {
             const Icon = ICONS[i % ICONS.length];
             const isLast = i === steps.length - 1;
             return (
-              <FadeIn key={step.title} delay={i * 0.08} className="relative">
-                <div className="flex h-full flex-col gap-3 rounded-[14px] border border-line bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-800 text-white">
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <h3 className="text-base font-bold text-ink">{step.title}</h3>
+              <Fragment key={step.title}>
+                <FadeIn delay={i * 0.08} className="min-w-0 flex-1">
+                  <div className="flex h-full flex-col gap-3 rounded-[14px] border border-line bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-800 text-white">
+                        <Icon className="h-6 w-6" />
+                      </span>
+                      <h3 className="text-base font-bold text-ink">{step.title}</h3>
+                    </div>
+                    <p className="text-sm text-ink-soft">
+                      {t.rich(`steps.${i}.text`, { b: bold })}
+                    </p>
                   </div>
-                  <p className="text-sm text-ink-soft">
-                    {t.rich(`steps.${i}.text`, { b: bold })}
-                  </p>
-                </div>
+                </FadeIn>
 
-                {/* Иконка (48px) всегда выше строки заголовка, поэтому её
-                    центр стабильно на padding(20px) + 24px = 44px от верха
-                    карточки — независимо от того, в 1 или 2 строки ушёл title. */}
                 {!isLast && (
-                  <div className="absolute top-[38px] -right-[33px] z-10 hidden sm:block">
+                  <div
+                    className="hidden w-6 shrink-0 items-start justify-center pt-[110px] sm:flex"
+                    aria-hidden
+                  >
                     <DashedArrowConnector />
                   </div>
                 )}
-              </FadeIn>
+              </Fragment>
             );
           })}
         </div>
