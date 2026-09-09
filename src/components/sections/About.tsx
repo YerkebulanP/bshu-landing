@@ -15,20 +15,22 @@ export async function About() {
     <section className="bg-yellow-50 py-20 sm:py-28">
       <Container>
         <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <FadeIn className="relative">
-            <div
-              className="absolute top-6 -left-10 -z-10 h-[75%] w-[110%] rounded-[140px] bg-blue-50"
+          <FadeIn className="relative aspect-[3/2] w-full">
+            <Image
+              src="/images/Union.png"
+              alt=""
+              fill
               aria-hidden
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="object-contain"
             />
-            <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_-1px_rgba(0,0,0,0.1)]">
-              <Image
-                src="/images/problem-classroom.jpg"
-                alt={t("h2")}
-                fill
-                sizes="(min-width: 1024px) 40vw, 90vw"
-                className="object-cover"
-              />
-            </div>
+            <Image
+              src="/images/о-проекте-мальчики-девочки.png"
+              alt={t("h2")}
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="object-contain"
+            />
           </FadeIn>
 
           <FadeIn delay={0.1}>
