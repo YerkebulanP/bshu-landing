@@ -38,7 +38,7 @@ export async function About() {
               {t("h2")}
             </h2>
 
-            <p className="mt-3 text-ink">{t("intro1")}</p>
+            <p className="mt-3 text-ink">{t.rich("intro1", { b: bold })}</p>
             <p className="mt-3 text-ink">{t.rich("intro2", { b: bold })}</p>
             <p className="mt-3 text-ink">{t("intro3")}</p>
 
