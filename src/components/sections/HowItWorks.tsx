@@ -62,24 +62,24 @@ export async function HowItWorks() {
             const Icon = ICONS[i % ICONS.length];
             const isLast = i === steps.length - 1;
             return (
-              <FadeIn key={step.title} delay={i * 0.08} className="relative">
+              <FadeIn key={step.title} delay={i * 0.08}>
                 <div className="flex h-full flex-col gap-3 rounded-[14px] border border-line bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.05)]">
-                  <div className="flex items-center gap-3">
+                  <div className="relative flex items-center gap-3">
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-800 text-white">
                       <Icon className="h-6 w-6" />
                     </span>
                     <h3 className="text-base font-bold text-ink">{step.title}</h3>
+
+                    {!isLast && (
+                      <div className="absolute top-1/2 -right-[33px] z-10 hidden -translate-y-1/2 sm:block">
+                        <DashedArrowConnector />
+                      </div>
+                    )}
                   </div>
                   <p className="text-sm text-ink-soft">
                     {t.rich(`steps.${i}.text`, { b: bold })}
                   </p>
                 </div>
-
-                {!isLast && (
-                  <div className="absolute top-9 -right-[34px] z-10 hidden sm:block">
-                    <DashedArrowConnector />
-                  </div>
-                )}
               </FadeIn>
             );
           })}
