@@ -10,6 +10,12 @@ const NAV_ITEMS = [
   { href: "#contacts", key: "contacts" },
 ] as const;
 
+// Адрес приложения для участников (личные кабинеты/голосование) задаётся
+// переменной NEXT_PUBLIC_APP_URL на этапе сборки. Пока не задан — кнопка
+// ведёт на якорь-заглушку.
+const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "");
+const loginHref = appUrl ? `${appUrl}/login` : "#login";
+
 export async function Header() {
   const t = await getTranslations("nav");
 
@@ -35,7 +41,7 @@ export async function Header() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <a
-            href="#login"
+            href={loginHref}
             className="inline-flex items-center justify-center rounded-full bg-navy-800 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-navy-700"
           >
             {t("login")}

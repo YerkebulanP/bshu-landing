@@ -1,0 +1,12 @@
+# Caddy выпускает и продлевает Let's Encrypt-сертификат сам.
+# SITE_DOMAIN приходит из .env через docker-compose (напр. upgradeplatform.kz).
+
+{$SITE_DOMAIN}, www.{$SITE_DOMAIN} {
+	encode zstd gzip
+
+	# www → без www
+	@www host www.{$SITE_DOMAIN}
+	redir @www https://{$SITE_DOMAIN}{uri} permanent
+
+	reverse_proxy web:3000
+}

@@ -1,0 +1,8 @@
+# Файлы, которые исполняются/парсятся на Linux-VPS — всегда LF,
+# независимо от платформы коммитера (репозиторий редактируется на Windows).
+* text=auto eol=lf
+Dockerfile text eol=lf
+Caddyfile text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

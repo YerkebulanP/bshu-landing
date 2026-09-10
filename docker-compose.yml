@@ -1,0 +1,43 @@
+# Лендинг upgradeplatform.kz для self-host на VPS (ps.kz).
+# Запуск:  docker compose up -d --build
+# Обновление:  git pull && docker compose up -d --build
+#
+# Переменные берутся из .env рядом с этим файлом (см. .env.example):
+#   NEXT_PUBLIC_APP_URL  — адрес приложения для участников (инлайнится в сборку)
+#   SITE_DOMAIN          — домен лендинга, напр. upgradeplatform.kz
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-}
+    restart: unless-stopped
+    expose:
+      - "3000"
+    networks:
+      - web
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?set SITE_DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    networks:
+      - web
+
+networks:
+  web:
+
+volumes:
+  caddy_data:
+  caddy_config:
