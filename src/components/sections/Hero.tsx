@@ -11,10 +11,10 @@ export async function Hero() {
   );
 
   const images: GalleryImage[] = [
-    { src: "/images/школьники.png", alt: t("gallery.school") },
-    { src: "/images/студенты.png", alt: t("gallery.students") },
-    { src: "/images/завод.png", alt: t("gallery.factory") },
-    { src: "/images/офис.png", alt: t("gallery.office") },
+    { src: "/images/gallery-school.webp", alt: t("gallery.school") },
+    { src: "/images/gallery-students.webp", alt: t("gallery.students") },
+    { src: "/images/gallery-factory.webp", alt: t("gallery.factory") },
+    { src: "/images/gallery-office.webp", alt: t("gallery.office") },
   ];
 
   return (

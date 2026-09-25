@@ -17,7 +17,7 @@ export async function About() {
         <div className="grid gap-14 lg:grid-cols-[1.15fr_1fr] lg:items-center">
           <FadeIn className="relative aspect-[3/2] w-full scale-[1.15]">
             <Image
-              src="/images/Union.png"
+              src="/images/about-blob.png"
               alt=""
               fill
               aria-hidden
@@ -25,7 +25,7 @@ export async function About() {
               className="object-contain"
             />
             <Image
-              src="/images/о-проекте-мальчики-девочки.png"
+              src="/images/about-illustration.webp"
               alt={t("h2")}
               fill
               sizes="(min-width: 1024px) 40vw, 90vw"

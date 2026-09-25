@@ -1,83 +1,84 @@
-# Деплой лендинга на ps.kz VPS
+# Деплой лендинга
 
-Лендинг — это Next.js с сервером (не статика), поэтому нужен **VPS / облачный
-сервер**, а не виртуальный хостинг. Всё упаковано в Docker: сам сайт +
-Caddy как reverse-proxy с автоматическим HTTPS.
+Два способа — по типу хостинга:
 
-## 1. Сервер
+| | Где | Как |
+|---|---|---|
+| **A. Статика** (основной) | обычный хостинг hoster.kz / ps.kz (Plesk, Apache, PHP) — без Node | `npm run build:static` → загрузить папку `out/` |
+| **B. Node-сервер** | VPS (Docker) | `docker compose up -d --build` — см. раздел внизу |
 
-- ps.kz → «Облачные VPS» → Ubuntu 24.04 LTS, минимально 1 vCPU / 1–2 ГБ RAM.
-- Зайти по SSH, поставить Docker:
-  ```bash
-  curl -fsSL https://get.docker.com | sh
-  ```
-  (плагин `docker compose` входит в комплект).
+---
 
-## 2. DNS
+## A. Хостинг hoster.kz (Plesk) — статика
 
-В панели управления доменом на ps.kz:
+Лендинг собирается в готовые HTML/CSS/JS-файлы (`out/`), сервер на Node не нужен.
+Форма заявки обрабатывается PHP-скриптом `lead.php` (на хостинге есть PHP 8.x).
 
-| Запись | Тип | Значение |
-|--------|-----|----------|
-| `upgradeplatform.kz` | `A` | IP вашего VPS |
-| `www` | `A` | IP вашего VPS |
+### Разовая настройка в Plesk
 
-Если домен ещё на nameserver'ах Vercel — переключить NS на ps.kz (или на любые,
-где сможете править записи). Дождаться распространения (обычно до 1–2 часов,
-у `.kz` бывает дольше).
+1. **DNS.** Записи `A` для `upgradeplatform.kz` и `www` должны указывать на IP хостинга
+   (он показан в карточке домена). Проверка: `nslookup upgradeplatform.kz`.
+2. **Корневая папка сайта.** «Хостинг и DNS» → «Настройки хостинга» → «Корневой каталог
+   документов». Сейчас это папка `upgradeplatform.kz` (в ней лежит заглушка `index.html`
+   и `cgi-bin`). Если у вас указано `httpdocs` — заливайте туда.
+3. **HTTPS.** «SSL/TLS-сертификаты» → «Let's Encrypt» → установить бесплатный сертификат
+   (галочки на домен и `www`). Затем в «Настройках хостинга» включить
+   «Постоянное SEO-безопасное перенаправление 301 с HTTP на HTTPS». Сейчас в панели
+   «Домен не защищён» — это надо сделать до запуска.
+4. **Почта для заявок.** «Почта» → создать ящики `hello@upgradeplatform.kz` (получатель)
+   и `noreply@upgradeplatform.kz` (отправитель). Другие адреса — поправьте
+   `LEAD_TO` / `LEAD_FROM` вверху `public/lead.php`.
 
-## 3. Код и переменные
-
-```bash
-git clone https://github.com/YerkebulanP/bshu-landing.git
-cd bshu-landing
-cp .env.example .env
-nano .env
-```
-
-В `.env`:
-```
-NEXT_PUBLIC_APP_URL=https://app.upgradeplatform.kz   # адрес приложения; можно оставить пустым, пока аппа нет
-SITE_DOMAIN=upgradeplatform.kz
-```
-`NEXT_PUBLIC_APP_URL` инлайнится в сборку — после его изменения нужен пересбор
-(шаг 5).
-
-## 4. Запуск
+### Каждый деплой
 
 ```bash
+# (опционально) адрес приложения для кнопки «Вход для участников»:
+#   PowerShell:  $env:NEXT_PUBLIC_APP_URL="https://app.upgradeplatform.kz"
+#   bash:        export NEXT_PUBLIC_APP_URL=https://app.upgradeplatform.kz
+# Пока не задан — кнопка ведёт на якорь-заглушку.
+
+npm ci                    # первый раз
+npm run build:static      # → папка out/ (≈3 МБ)
+```
+
+Затем **содержимое** `out/` (не саму папку) залить в корневую папку сайта на хостинге,
+вместе со скрытым `.htaccess`. Файл `index.html` перезапишет заглушку хостинга,
+`cgi-bin` не трогать.
+
+- **Через Plesk:** «Файлы» → `upgradeplatform.kz` → «Загрузить» → ZIP с содержимым `out/`
+  → «Извлечь файлы».
+- **Через FTP** (FileZilla/WinSCP): данные — Plesk → «FTP» / «Информация о подключении».
+
+### Проверка после заливки
+
+- `https://upgradeplatform.kz` → перекидывает на `/ru/`, страница открывается целиком;
+- отправить тестовую заявку с формы → письмо приходит на `LEAD_TO`
+  (если нет — Plesk → «Журналы»; письма с нового домена без SPF/DKIM могут попадать в спам);
+- `https://upgradeplatform.kz/nope` → своя 404.
+
+### Что учесть
+
+- Статика = нет серверной логики Next: `src/app/api/lead` и `src/proxy.ts`
+  в этой сборке не участвуют (Next сам пишет про это предупреждение при сборке).
+- Плейсхолдеры в контенте, которые надо заменить на реальные до запуска:
+  `footer.email` / `footer.phone` в `messages/ru.json`.
+- Приложение (FastAPI + PostgreSQL) на такой хостинг не встанет — ему нужен VPS
+  (`app.` / `api.` поддомены), это отдельный этап.
+
+---
+
+## B. VPS + Docker (Node-сервер)
+
+Сайт + Caddy как reverse-proxy с автоматическим HTTPS.
+
+```bash
+curl -fsSL https://get.docker.com | sh
+git clone https://github.com/YerkebulanP/bshu-landing.git && cd bshu-landing
+cp .env.example .env && nano .env      # SITE_DOMAIN, NEXT_PUBLIC_APP_URL
 docker compose up -d --build
 ```
 
-Caddy сам получит сертификат Let's Encrypt для `upgradeplatform.kz` и `www.`
-(порты 80/443 на VPS должны быть открыты — на ps.kz проверить firewall/security
-group). Проверка:
-```bash
-docker compose ps
-docker compose logs -f caddy   # тут видно выдачу сертификата
-curl -I https://upgradeplatform.kz
-```
-
-## 5. Обновление после изменений в репозитории
-
-```bash
-git pull
-docker compose up -d --build
-```
-
-Старый контейнер меняется на новый без простоя доступа (Caddy держит соединение).
-Почистить старые образы: `docker image prune -f`.
-
-## 6. Полезное
-
-- Логи сайта: `docker compose logs -f web`
-- Перезапуск: `docker compose restart web`
-- Остановить всё: `docker compose down` (сертификаты сохранятся в volume `caddy_data`)
-- Автозапуск после ребута сервера обеспечен `restart: unless-stopped`.
-
-## Что ещё не готово (сторона приложения)
-
-`app.upgradeplatform.kz` (React SPA) и `api.upgradeplatform.kz`
-(FastAPI + PostgreSQL) — отдельная обвязка, готовится позже. Пока
-`NEXT_PUBLIC_APP_URL` можно оставить пустым: кнопка «Вход для участников»
-будет вести на якорь-заглушку, лендинг от этого не ломается.
+DNS: `A`-записи `upgradeplatform.kz` и `www` → IP VPS, порты 80/443 открыты.
+Обновление: `git pull && docker compose up -d --build`.
+`NEXT_PUBLIC_*` инлайнятся в сборку — после смены значения нужен пересбор.
+Заявки в этом режиме принимает Next-роут `/api/lead` (сейчас заглушка с `console.log`).

@@ -6,6 +6,10 @@ import type { LeadPayload } from "@/app/api/lead/route";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+// Куда отправлять заявку: по умолчанию Next-роут (dev / Docker), а в статической
+// сборке для обычного хостинга — PHP-обработчик (`build:static` ставит /lead.php).
+const LEAD_ENDPOINT = process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "/api/lead";
+
 export function LeadForm() {
   const t = useTranslations("cta.form");
   const [status, setStatus] = useState<Status>("idle");
@@ -25,7 +29,7 @@ export function LeadForm() {
     };
 
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch(LEAD_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
